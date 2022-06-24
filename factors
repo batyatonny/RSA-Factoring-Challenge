@@ -3,17 +3,24 @@ from random import randint
 
 
 def gcd(a, b):
+<<<<<<< HEAD
     """ Returns the greatest common divisor of the two numbers
     """
+=======
+>>>>>>> 9fb9c30e05c1bef7ef23d383c0acacbe0a0c5776
     while b:
         a, b = b, a % b
     return a
 
 
+<<<<<<< HEAD
 def _pollard_brent_func(c, n, x):
     """ Return f(x) = (x^2 + c) % n
         Assume c < n
     """
+=======
+def _pollard_brent(c, n, x):
+>>>>>>> 9fb9c30e05c1bef7ef23d383c0acacbe0a0c5776
     y = (x ** 2) % n + c
     if y >= n:
         y -= n
@@ -22,23 +29,37 @@ def _pollard_brent_func(c, n, x):
     return y
 
 
+<<<<<<< HEAD
 def brent_factorise(n, iterations=None):
     """ Perform Brent's variant of Pollard's rho factorization algorithm to
         attempt to find a non-trivial factor of the given number number, n.
         If iterations > 0, return None if no factors are found within its range
     """
     y, c, m = (randint(1, n - 1) for _ in range(3))
+=======
+def factorise_b(n, iterations=None):
+    y, c, m = (randint(1, n - 1) for w in range(3))
+>>>>>>> 9fb9c30e05c1bef7ef23d383c0acacbe0a0c5776
     r, q, g = 1, 1, 1
     i = 0
     while g == 1:
         x = y
+<<<<<<< HEAD
         for _ in range(r):
             y = _pollard_brent_func(c, n, y)
+=======
+        for w in range(r):
+            y = _pollard_brent(c, n, y)
+>>>>>>> 9fb9c30e05c1bef7ef23d383c0acacbe0a0c5776
         k = 0
         while k < r and g == 1:
             ys = y
             for _ in range(min(m, r - k)):
+<<<<<<< HEAD
                 y = _pollard_brent_func(c, n, y)
+=======
+                y = _pollard_brent(c, n, y)
+>>>>>>> 9fb9c30e05c1bef7ef23d383c0acacbe0a0c5776
                 q = (q * abs(x - y)) %  n
             g = gcd(q, n)
             k += m
@@ -50,7 +71,11 @@ def brent_factorise(n, iterations=None):
 
     if g == n:
         while True:
+<<<<<<< HEAD
             ys = _pollard_brent_func(c, n, ys)
+=======
+            ys = _pollard_brent(c, n, ys)
+>>>>>>> 9fb9c30e05c1bef7ef23d383c0acacbe0a0c5776
             g = gcd(abs(x - ys), n)
             if g > 1:
                 break
@@ -66,5 +91,9 @@ if __name__ == '__main__':
     with open(argv[1], "r") as f:
         for i in f:
             n = int(i[:-1])
+<<<<<<< HEAD
             res = brent_factorise(n)
+=======
+            res = factorise_b(n)
+>>>>>>> 9fb9c30e05c1bef7ef23d383c0acacbe0a0c5776
             print("{}={}*{}".format(n, n // res, res))
